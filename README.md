@@ -1,16 +1,19 @@
-# web 联系记录
+# web 练习
 
 ## Overview
 
-只在记录个人 web 学习历程，个人复习使用
-参考网站：
-[MMDN](https://developer.mozilla.org/zh-CN/)
-[菜鸟教程](https://www.runoob.com/)
-[css 官方文档](https://www.w3.org/Style/CSS/)
-[CODEPEN](https://codepen.io/)
+建立该仓库旨在记录个人 web 学习历程，个人复习使用
 
-参考资料：
-Nefu ppt
+1. 参考网站：
+
+   - [MMDN](https://developer.mozilla.org/zh-CN/)
+   - [菜鸟教程](https://www.runoob.com/)
+   - [css 官方文档](https://www.w3.org/Style/CSS/)
+   - [CODEPEN](https://codepen.io/)
+
+2. 参考资料：
+
+- Nefu ppt
 
 ## Development Enviromments
 
