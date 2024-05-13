@@ -10,6 +10,7 @@
    - [菜鸟教程](https://www.runoob.com/)
    - [css 官方文档](https://www.w3.org/Style/CSS/)
    - [CODEPEN](https://codepen.io/)
+   - [w3schools](https://www.w3schools.com/)
 
 2. 参考资料：
 

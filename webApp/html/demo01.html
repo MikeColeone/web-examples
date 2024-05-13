@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>上导航</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .topnav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      .topnav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+
+      .topnav a:hover {
+        background-color: #555;
+      }
+
+      .submenu {
+        display: none;
+        position: absolute;
+        background-color: #333;
+      }
+
+      .submenu a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+      .topnav .describe:hover + .submenu {
+        display: block;
+      }
+
+      .content {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="#">主页</a>
+      <a href="#" class="describe">详细信息显示</a>
+      <div class="submenu">
+        <a href="#">产品</a>
+        <a href="#">服务</a>
+        <a href="#">顾客</a>
+        <a href="#">链接</a>
+        <a href="#">定位</a>
+        <a href="#">反馈</a>
+      </div>
+      <a href="#">博客</a>
+      <a href="#">联系方式</a>
+    </div>
+  </body>
+</html>

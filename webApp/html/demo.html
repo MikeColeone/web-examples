@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSDN</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .header li {
+        float: left;
+        text-align: center;
+        width: 80px;
+        height: 20px;
+        list-style: none;
+      }
+      a {
+        text-align: center;
+        text-decoration: none;
+      }
+      .header {
+        background-color: antiquewhite;
+        width: 800px;
+        height: 12px;
+        padding: 10px;
+        font-size: 15px;
+        border: none;
+      }
+      li:hover {
+        background-color: blue;
+      }
+
+      .setload {
+        display: none;
+      }
+      .setblog {
+        display: none;
+      }
+      .load:hover + .setload,
+      setload:hover {
+        display: block;
+      }
+      .blog:hover + .setblog,
+      setblog:hover {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <ul class="guide">
+        <li>
+          <a href="#" class="blog">博客</a>
+          <ul class="setblog">
+            <li><a href="#">写博客</a></li>
+            <li><a href="#">删博客</a></li>
+          </ul>
+        </li>
+        <li><a href="#">下载</a></li>
+        <li><a href="#">学习</a></li>
+        <li><a href="#">社区</a></li>
+        <li>
+          <a href="#" class="load">账号</a>
+          <ul class="setload">
+            <li><a href="#">退出登录</a></li>
+            <li><a href="#">注销账号</a></li>
+            <li><a href="#">查看信息</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
