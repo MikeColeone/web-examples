@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiment</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .page {
+        height: auto;
+        width: 1080px;
+        border: 1px solid #f08c00;
+        background-color: #ffec99;
+        margin: auto;
+      }
+      li {
+        text-decoration: none;
+        list-style: none;
+      }
+      a {
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+      }
+      .page .header {
+        padding: 5px;
+      }
+
+      .page .header ul {
+        display: flex;
+        width: 100%;
+        background-color: #333;
+        border: 1px solid #f08c00;
+      }
+      .page .header ul .li-layout {
+        margin-left: auto;
+      }
+
+      .page .header li a {
+        display: block;
+      }
+      .page .header li:hover {
+        background-color: black;
+        color: springgreen;
+      }
+      .center {
+        display: flex;
+        padding: 10px 10px;
+        border: 1px solid #f08c00;
+        background-color: #ffec99;
+      }
+      .center .sidebar li a {
+        display: block;
+        padding: 15px 10px;
+        background-color: rgb(91, 192, 225);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .center .sidebar .active {
+        background: rgb(7, 137, 180);
+        color: white;
+        padding: 15px;
+      }
+      .center .sidebar a:not(.active):hover {
+        background-color: rgb(7, 137, 180);
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      .center .sidebar {
+        width: 25%;
+        border: 1px solid #f08c00;
+      }
+      .center .main {
+        padding: 10px;
+        width: 75%;
+        border: 1px solid #f08c00;
+      }
+      .foot {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <ul>
+          <li><a href="#" class="home">Home</a></li>
+          <li><a href="#" class="about">About</a></li>
+          <li><a href="#" class="contact">Contact</a></li>
+          <li class="li-layout"><a href="#" class="layout">Layout</a></li>
+        </ul>
+      </div>
+      <div class="center">
+        <div class="sidebar">
+          <ul>
+            <li><a href="#" class="active">云技术管理</a></li>
+            <li><a href="#">云服务器</a></li>
+            <li><a href="#">云数据库</a></li>
+            <li><a href="#">负载均衡</a></li>
+            <li><a href="#" class="active">安全管理</a></li>
+            <li><a href="#">云盾控制台</a></li>
+            <li><a href="#">DDoS高防IP</a></li>
+            <li><a href="#">Web应用防火台</a></li>
+          </ul>
+        </div>
+        <div class="main">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, ipsum nostrum esse
+          laboriosam optio consequuntur. Similique, doloremque voluptas, aspernatur fuga rem, eos
+          eaque nulla odio architecto consequatur mollitia quaerat iste fugiat natus facilis
+          provident esse quas dolores quidem repudiandae porro dignissimos cumque. Necessitatibus
+          placeat temporibus dolor nihil corporis ipsa quis error, repellat vitae, sapiente fugit
+          similique! Nam animi ut ipsum facere aut earum mollitia adipisci et dolorem, quaerat
+          commodi ipsa similique officiis temporibus eaque atque perspiciatis inventore praesentium
+          minima odio illo dignissimos sed aliquam? Non eius fugiat ut qui voluptates quia, dolores
+          libero voluptatum impedit temporibus, porro a exercitationem consectetur?
+        </div>
+      </div>
+      <div class="foot">
+        <p>
+          东北林业大学
+          <br />
+          软件工程专业 2046&copy;
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

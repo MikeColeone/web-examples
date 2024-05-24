@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>课程和教师关联</title>
+  </head>
+  <body>
+    <select id="courseSelect">
+      <option></option>
+      <option value="1">Java</option>
+      <option value="2">Web</option>
+      <option value="3">Python</option>
+    </select>
+
+    <div id="teacherName"></div>
+
+    <script>
+      const courses = [
+        { id: 1, courseName: 'Java', teacherName: 'BO' },
+        { id: 2, courseName: 'Web', teacherName: 'SUN' },
+        { id: 3, courseName: 'Python', teacherName: 'ZHANG' }
+      ]
+
+      // 获取课程名称下拉框和教师姓名渲染位置
+      const courseSelect = document.getElementById('courseSelect')
+      const teacherNameElement = document.getElementById('teacherName')
+
+      // 监听下拉框的值变化事件
+      courseSelect.addEventListener('change', function (event) {
+        // 获取选择的课程 id
+        const selectedCourseId = event.target.value
+
+        // 在对象数组中查找对应的授课教师姓名
+        const selectedCourse = courses.find((c) => c.id == selectedCourseId)
+
+        // 如果找到对应课程，渲染教师姓名到页面
+        if (selectedCourse) {
+          teacherNameElement.textContent = `授课教师：${selectedCourse.teacherName}`
+        } else {
+          teacherNameElement.textContent = '未找到对应教师'
+        }
+      })
+    </script>
+  </body>
+</html>

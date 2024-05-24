@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表单示例</title>
+    <style>
+      /* 全局样式 */
+      input[type='text'],
+      input[type='password'] {
+        width: 100%;
+        border-radius: 5px;
+        padding: 10px;
+      }
+
+      /* 表单组样式 */
+      .form-group {
+        display: flex;
+        align-items: center;
+      }
+
+      /* 表单标签样式 */
+      .form-label {
+        display: block;
+        flex: 1;
+        text-align: right;
+        padding-right: 10px;
+      }
+
+      /* 表单输入域样式 */
+      .form-input {
+        flex: 4;
+        padding: 10px;
+        align-items: center; /* 将子元素居中对齐 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-group">
+      <label for="username" class="form-label">用户名：</label>
+      <div class="form-input">
+        <input type="text" id="username" name="username" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">密码：</label>
+      <div class="form-input">
+        <input type="password" id="password" name="password" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">性别：</label>
+      <div class="form-input">
+        <label>
+          <input type="radio" name="gender" value="male" />
+          男
+        </label>
+        <label>
+          <input type="radio" name="gender" value="female" />
+          女
+        </label>
+      </div>
+    </div>
+  </body>
+</html>

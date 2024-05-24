@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>table</title>
+    <style>
+      .header {
+        font-size: large;
+        font-weight: bold;
+      }
+      table tr a {
+        display: inline-block;
+        padding: 10px;
+        text-decoration: none;
+        color: white;
+        background-color: red;
+        border-radius: 8px;
+      }
+      table tr {
+        width: 100%;
+        border-bottom: 1px solid black;
+      }
+      .text-lable {
+        border-radius: 3px;
+        padding: 5px;
+        color: white;
+        background-color: brown;
+      }
+      .alart-lable {
+        border-radius: 3px;
+        padding: 5px;
+        color: white;
+        background-color: yellow;
+      }
+      table th {
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p class="header">学生信息</p>
+      <p>
+        说明：以下为2046级学生名单，共四人，
+        <span class="text-lable">成功加载三人</span>
+        <span class="alart-lable">警告：列表不包含降级学生</span>
+      </p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>姓名</th>
+          <th>班级</th>
+          <th>Email</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>郭立新</td>
+          <td>软件工程2046级1班</td>
+          <td>guo@example.com</td>
+          <td>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>黄英</td>
+          <td>软件工程2046级1班</td>
+          <td>huang@example.com</td>
+          <td>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>吕惠玲</td>
+          <td>软件工程2046级2班</td>
+          <td>lu@example.com</td>
+          <td>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

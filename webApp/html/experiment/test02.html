@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* 将 box-sizing 改为 border-box */
+      }
+      .container {
+        padding: 10px;
+      }
+      input[type='text'] {
+        padding: 5px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="myInput" placeholder="两秒后将自动转换大写" />
+
+    <script>
+      // 获取输入框元素
+      const inputElement = document.getElementById('myInput')
+      let timeId = null // 用于存储 setTimeout 的 ID
+
+      const toUpper = function () {
+        inputElement.value = inputElement.value.toUpperCase()
+      }
+      // 添加事件
+      inputElement.addEventListener('input', function () {
+        //通过获取的id清楚之前的延迟
+        clearTimeout(timeId)
+
+        timeId = setTimeout(toUpper, 2000)
+      })
+    </script>
+  </body>
+</html>

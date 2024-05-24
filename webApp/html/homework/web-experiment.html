@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="#" method="post">
+      <div>
+        <p>个人信息</p>
+        <lable for="username">用户名：</lable>
+        <input type="text" id="username" name="username" required />
+        <br />
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password" required />
+        <br />
+        性别:
+        <label for="female">男</label>
+        <input type="radio" id="female" name="gender" />
+        <label for="male">女</label>
+        <input type="radio" id="male" name="gender" />
+        <br />
+        生日：
+        <input id="birthday" type="date" required />
+        <br />
+        <label for="province">籍贯：</label>
+        <input list="province" />
+        <datalist id="province">
+          <option>哈尔滨</option>
+          <option>沈阳</option>
+          <option>长春</option>
+        </datalist>
+        <br />
+
+        <label for="degree">学历：</label>
+        <select name="degree" id="degree">
+          <option value="学士">学士</option>
+          <option value="硕士">硕士</option>
+          <option value="博士">博士</option>
+        </select>
+      </div>
+      <div>
+        <p>其他信息：</p>
+        <br />
+        <p>喜欢的课程：</p>
+        <ul>
+          <li>
+            <lable>
+              <input type="checkbox" />
+              web开发技术
+            </lable>
+          </li>
+          <li>
+            <lable>
+              <input type="checkbox" />
+              java程序设计
+            </lable>
+          </li>
+          <li>
+            <lable>
+              <input type="checkbox" />
+              数据库原理
+            </lable>
+          </li>
+          <li>
+            <lable>
+              <input type="checkbox" />
+              系统分析与测试
+            </lable>
+          </li>
+        </ul>
+        <label for="photo">照片：</label>
+        <input id="photo" type="file" accept=".jpg, .png" />
+      </div>
+
+      <button type="submit">提交</button>
+      <button type="reset">重置</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Layout</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .row {
+        display: flex;
+        align-items: flex-start;
+      }
+      .nav {
+        min-width: 180px;
+        background-color: #f0f0f0;
+        padding: 10px;
+      }
+      .nav a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        padding: 8px;
+      }
+      .nav a:hover {
+        background-color: #ccc;
+      }
+      .nav a .material-icons {
+        vertical-align: middle;
+      }
+      .main {
+        flex: 1;
+        padding: 20px;
+        background-color: #e0e0e0;
+      }
+
+      @media (max-width: 600px) {
+        .nav {
+          min-width: 60px;
+        }
+        .nav a span {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <nav class="nav">
+          <a href="#">
+            <i class="material-icons">dashboard</i>
+            <span>dashboard</span>
+          </a>
+          <a href="#">
+            <i class="material-icons">computer</i>
+            <span>computer</span>
+          </a>
+          <a href="#">
+            <i class="material-icons">style</i>
+            <span>style</span>
+          </a>
+          <a href="#">
+            <i class="material-icons">timer</i>
+            <span>timer</span>
+          </a>
+        </nav>
+        <div class="main">
+          <h1>Main Content</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem ipsa minus velit
+            culpa, provident autem veritatis voluptas nostrum distinctio aspernatur veniam pariatur
+            hic quaerat placeat voluptatem cumque quasi similique perferendis optio eveniet.
+            Voluptates quae consequuntur aperiam quidem nemo rerum magnam nam nostrum odit deleniti.
+            Quasi deleniti dolorem cum repudiandae aspernatur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

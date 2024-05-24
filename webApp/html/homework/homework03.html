@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <style>
+      .badge {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* 图标容器 */
+      .badge-content {
+        font-size: 24px;
+      }
+
+      /* 数字容器 */
+      .badge-wrapper {
+        display: flex;
+        position: absolute;
+        top: -5px; /* 调整数字容器位置 */
+        right: -1px; /* 调整数字容器位置 */
+        background-color: #ff0000; /* 示例背景色 */
+        color: #ffffff; /* 示例字体色 */
+        border-radius: 50%; /* 使容器成圆形 */
+        width: 20px; /* 根据数字长度调整容器宽度 */
+        height: 20px; /* 保持宽度与高度一致 */
+        font-size: 14px; /* 根据需求设置字体大小 */
+      }
+      .badge-wrapper span {
+        align-items: center;
+        margin: auto;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="badge">
+      <div class="badge-content">
+        <i class="material-icons">feed</i>
+      </div>
+      <span>feed</span>
+      <div class="badge-wrapper">
+        <span>5</span>
+      </div>
+    </div>
+  </body>
+</html>
