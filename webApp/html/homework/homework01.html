@@ -5,25 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>表单示例</title>
     <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .login {
+        width: 1080px;
+        height: 980px;
+        padding: 10px;
+        margin: 10px;
+        border: 2px solid black;
+      }
       /* 全局样式 */
       input[type='text'],
       input[type='password'] {
         width: 100%;
-        border-radius: 5px;
+        border: 0px;
+        border-bottom: 2px solid black;
         padding: 10px;
       }
 
       /* 表单组样式 */
       .form-group {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: left;
       }
 
       /* 表单标签样式 */
       .form-label {
         display: block;
         flex: 1;
-        text-align: right;
+        text-align: left;
         padding-right: 10px;
       }
 
@@ -36,20 +49,22 @@
     </style>
   </head>
   <body>
-    <div class="form-group">
-      <label for="username" class="form-label">用户名：</label>
-      <div class="form-input">
-        <input type="text" id="username" name="username" />
+    <div class="login">
+      <h1 class="title">登录</h1>
+      <div class="form-group">
+        <label for="username" class="form-label">用户名：</label>
+        <div class="form-input">
+          <input type="text" id="username" name="username" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">密码：</label>
+        <div class="form-input">
+          <input type="password" id="password" name="password" />
+        </div>
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="password" class="form-label">密码：</label>
-      <div class="form-input">
-        <input type="password" id="password" name="password" />
-      </div>
-    </div>
-
     <div class="form-group">
       <label class="form-label">性别：</label>
       <div class="form-input">
@@ -63,5 +78,13 @@
         </label>
       </div>
     </div>
+
+    <script>
+      const inputTextId = document.getElementById('username')
+
+      inputTextId.addEventListener('blur', function () {
+        inputTextId
+      })
+    </script>
   </body>
 </html>

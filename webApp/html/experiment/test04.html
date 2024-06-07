@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选课系统</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid black;
+      }
+      td,
+      th {
+        padding: 10px;
+        align-items: center;
+        border: 2px solid black;
+      }
+      tr:nth-child(odd) {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: #ffffff;
+      }
+      th {
+        background-color: #4caf50;
+        align-items: center;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>禁止选取有冲突的课</h1>
+    <table id="courseTable">
+      <tr>
+        <th>#</th>
+        <th>名称</th>
+        <th>学分</th>
+        <th>起止周</th>
+        <th>时间</th>
+        <th>教师</th>
+        <th>操作</th>
+      </tr>
+    </table>
+    <script>
+      const courseSelect = [
+        {
+          id: 1,
+          courseName: '数据库原理',
+          cent: 3,
+          week: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          time: 112,
+          teacher: '谭文韬'
+        },
+        {
+          id: 2,
+          courseName: 'Web开发技术',
+          cent: 2.5,
+          week: [1, 2, 3, 4, 5, 6, 7, 8],
+          time: 134,
+          teacher: '徐懿'
+        },
+        {
+          id: 3,
+          courseName: '托福阅读',
+          cent: 2,
+          week: [1, 2, 3, 4, 5],
+          time: 112,
+          teacher: '李景阳'
+        },
+        {
+          id: 4,
+          courseName: '高级英语视听',
+          cent: 3,
+          week: [3, 4, 5, 6, 7, 8, 9, 10],
+          time: 134,
+          teacher: '龙跃超'
+        },
+        {
+          id: 5,
+          courseName: 'Web系统框架',
+          cent: 3,
+          week: [10, 11, 12, 13, 14, 15, 16, 17],
+          time: 112,
+          teacher: '王子阳'
+        }
+      ]
+
+      let selectedCourses = []
+
+      //判断是否存在冲突
+      function hasConflict(course1, course2) {
+        const judgeWeek =
+          course1.week[0] <= course2.week[course2.week.length - 1] &&
+          course1.week[course1.week.length - 1] >= course2.week[0]
+        if (judgeWeek) {
+          const sameTime = course1.time === course2.time
+          if (sameTime) {
+            return true
+          }
+        }
+        return false
+      }
+
+      function drawTable() {
+        const table = document.getElementById('courseTable')
+
+        courseSelect.forEach((course) => {
+          const row = document.createElement('tr')
+
+          row.innerHTML = `
+        <td>${course.id}</td>
+        <td>${course.courseName}</td>
+        <td>${course.cent}</td>
+        <td>${course.week[0] + '到' + course.week[course.week.length - 1] + '周'}</td>
+        <td>${
+          '周' + (course.time - (course.time % 100)) / 100 + '/' + (course.time % 100) + '节'
+        }</td>
+        <td>${course.teacher}</td>
+        <td>
+            <button onclick="dropCourse(${course.id})">
+                ${isSelected(course.id) ? '退课' : '选择'}
+            </button>
+        </td>
+        `
+
+          table.appendChild(row)
+        })
+      }
+
+      function isSelected(courseId) {
+        return selectedCourses.find((c) => c.id === courseId)
+      }
+
+      function dropCourse(courseId) {
+        const course = courseSelect.find((c) => c.id === courseId)
+
+        if (isSelected(courseId)) {
+          // 如果已选择该课程，则从已选课程列表中移除
+          const index = selectedCourses.findIndex((c) => c.id === courseId)
+          selectedCourses.splice(index, 1)
+          alert('退课成功！')
+        } else {
+          // 检查课程是否与已选课程时间冲突
+          for (const selectedCourse of selectedCourses) {
+            if (hasConflict(selectedCourse, course)) {
+              alert('该课程与已选课程时间冲突！')
+              return
+            }
+          }
+          // 如果没有时间冲突，则将课程添加到已选课程列表中
+          selectedCourses.push(course)
+          alert('选课成功！')
+        }
+
+        // 清空渲染
+        document.getElementById('courseTable').innerHTML =
+          '<tr><th>#</th><th>名称</th><th>学分</th><th>起止周</th><th>时间</th><th>教师</th><th>操作</th></tr>'
+        drawTable()
+      }
+
+      drawTable()
+    </script>
+  </body>
+</html>

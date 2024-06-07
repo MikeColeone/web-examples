@@ -7,7 +7,6 @@
   </head>
   <body>
     <select id="courseSelect">
-      <option></option>
       <option value="1">Java</option>
       <option value="2">Web</option>
       <option value="3">Python</option>
@@ -27,12 +26,13 @@
       const teacherNameElement = document.getElementById('teacherName')
 
       // 监听下拉框的值变化事件
-      courseSelect.addEventListener('change', function (event) {
+      courseSelect.addEventListener('click', function (event) {
         // 获取选择的课程 id
-        const selectedCourseId = event.target.value
+        const selectedCourseId = parseInt(event.target.value)
 
         // 在对象数组中查找对应的授课教师姓名
-        const selectedCourse = courses.find((c) => c.id == selectedCourseId)
+
+        const selectedCourse = courses.find((c) => c.id === selectedCourseId)
 
         // 如果找到对应课程，渲染教师姓名到页面
         if (selectedCourse) {

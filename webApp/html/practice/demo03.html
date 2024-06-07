@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数将传入数字千分位加逗号返回</title>
+  </head>
+  <body>
+    <script>
+      // 将数字作为参数传入
+      function toThousands(number) {
+        let numberStr = number.toString() // 将数字转化成字符串
+        let ans = '' // 记录答案作为返回对象
+        let count = 0
+        for (let i = numberStr.length - 1; i >= 0; i--) {
+          ans = numberStr[i] + ans // 先拼接当前字符
+          count++
+          if (count == 3) {
+            ans = ',' + ans
+          }
+        }
+        return ans
+      }
+      alert(toThousands(1234)) // 弹出 "1,234"
+    </script>
+  </body>
+</html>

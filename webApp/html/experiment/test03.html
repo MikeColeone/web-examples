@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数将传入数字千分位加逗号返回</title>
+  </head>
+  <body>
+    <input type="text" id="myInput" placeholder="请输入一段数字" />
+    <p></p>
+    <script>
+      const inputElement = document.getElementById('myInput')
+      inputElement.addEventListener('input', function () {
+        //在输入时自动移除逗号
+        const inputValue = parseFloat(inputElement.value.replace(/,/g, ''))
+        inputElement.value = toThousands(inputValue)
+      })
+
+      // 将数字作为参数传入
+      function toThousands(number) {
+        let numberStr = number.toString() // 将数字转化成字符串
+        let ans = '' // 记录答案作为返回对象
+        let count = 0
+        for (let i = numberStr.length - 1; i >= 0; i--) {
+          ans = numberStr[i] + ans
+          count++
+          if (count % 3 == 0 && count != 0 && count != numberStr.length) {
+            ans = ',' + ans
+          }
+        }
+        return ans
+      }
+    </script>
+  </body>
+</html>

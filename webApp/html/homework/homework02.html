@@ -7,7 +7,8 @@
     <style>
       /* 全局样式 */
       * {
-        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
       }
 
       body {
@@ -19,7 +20,7 @@
       .container {
         max-width: 960px;
         max-height: 1080px;
-        margin: 0 auto;
+        /* margin: 0 auto; */
         padding: 20px;
       }
 
@@ -35,7 +36,7 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         flex: 0 0 33%;
-        padding: 20px;
+        padding: 90px 20px 90px 20px;
         cursor: pointer;
       }
 
@@ -45,31 +46,46 @@
 
       .card-header {
         text-align: center;
+        margin-bottom: -40px;
       }
 
       .card-header img {
-        display: block;
-        width: 100%;
+        width: 90%;
         border-radius: 100%;
         opacity: 0.8;
+
         transition: opacity 0.4s;
       }
 
-      .card:hover .card-header img {
+      .card:hover .card-header {
         opacity: 1;
+        margin: 0px;
       }
 
       .card-content {
-        display: none;
+        /* display: none; */
+        height: 100px;
+        width: auto;
         text-align: justify;
       }
-      .demo01:hover + .text-demo01,
-      .demo02:hover + .text-demo02,
-      .demo03:hover + .text-demo03 {
+      .card-content p {
+        display: none;
+      }
+      .card:hover {
+        transition: 1s;
+        padding: 20px;
+      }
+      .card:hover .card-content p {
+        transition: 1s;
         display: block;
+      }
+      .card:hover .card-footer {
+        transition: 1s;
+        margin: 0px;
       }
       .card-footer {
         text-align: center;
+        margin-top: -80px;
       }
 
       .card-footer a {

@@ -19,7 +19,8 @@
       }
     </style>
   </head>
-  <body>
+  <!-- 鼠标点击两秒后转大写 -->
+  <!-- <body>
     <input type="text" id="myInput" placeholder="两秒后将自动转换大写" />
 
     <script>
@@ -37,6 +38,20 @@
 
         timeId = setTimeout(toUpper, 2000)
       })
+    </script>
+  </body> -->
+
+  <!-- 修改版 由于使用input会在每一次点击的时候调用函数 造成资源浪费 所以采用点击的方式 -->
+  <body>
+    <input type="text" id="myInput" placeholder="点击输入" onclick="myToUpper()" />
+    <script>
+      function myToUpper() {
+        const timeId = setTimeout(function () {
+          clearTimeout(timeId)
+          var inputField = document.getElementById('myInput')
+          inputField.value = inputField.value.toUpperCase()
+        }, 2000)
+      }
     </script>
   </body>
 </html>
