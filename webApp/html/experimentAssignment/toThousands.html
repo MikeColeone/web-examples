@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数将传入数字千分位加逗号返回</title>
+  </head>
+  <style>
+    .hint {
+      display: block;
+      color: rgb(134, 115, 91);
+    }
+  </style>
+
+  <body>
+    <p class="hint">
+      <em>输入可以是整数，小数，字符串</em>
+      <br />
+    </p>
+    <input type="text" id="myInput" placeholder="请输入一段字符串" />
+    <p id="result" class="result"></p>
+    <script>
+      const input = document.getElementById('myInput')
+      let timeId
+      input.addEventListener('input', function () {
+        clearTimeout(timeId)
+        timeId = setTimeout(toThousands, 2000)
+      })
+      function toThousands() {
+        // 创建变量接受input的value
+        let ans = ''
+        let count = 0
+        let value = document.getElementById('myInput').value
+        const targetTag = document.getElementById('result')
+        value = value.replace(/,/g, '')
+        // targetTag.innerHTML = value
+        for (let i = value.length - 1; i >= 0; i--) {
+          // 遍历数组
+          ans = value[i] + ans
+          count++
+          if (count % 3 == 0 && i != 0) {
+            ans = ',' + ans
+          }
+
+          if (value[i] == '.') {
+            //当出现小数点时清空逗号
+            ans = ans.replace(/,/g, '')
+          }
+        }
+        targetTag.innerHTML = ans
+      }
+    </script>
+  </body>
+</html>

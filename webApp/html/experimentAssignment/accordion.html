@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .sidebar {
+        width: 35%;
+        padding: 20px;
+      }
+      .sidebar h2 {
+        padding: 15px;
+        text-align: center;
+        border-radius: 4px;
+        color: black;
+        background-color: rgb(163, 125, 199);
+      }
+      .sidebar a {
+        display: block;
+        width: auto;
+        padding: 15px;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        background-color: rgb(167, 175, 212);
+      }
+      .sidebar ul {
+        /* 设置初始状态 */
+        display: none;
+      }
+      .sidebar ul li {
+        list-style: none;
+      }
+      .sidebar a:hover {
+        transform: scale(1.2);
+        transition: 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <div class="area sidebar">
+      <div class="sidebar-group">
+        <h2>云技术管理</h2>
+        <ul>
+          <li><a href="#">云服务器</a></li>
+          <li><a href="#">云数据库</a></li>
+          <li><a href="#">负载均衡</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-group">
+        <h2>安全管理</h2>
+        <ul>
+          <li><a href="#">云盾控制台</a></li>
+          <li><a href="#">DDoS高防IP</a></li>
+          <li><a href="#">Web应用防火墙</a></li>
+          <li><a href="#">CA证书服务</a></li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      //页面完全加载之后执行函数
+      $(document).ready(function () {
+        const h2 = $('.sidebar-group>h2').click(function () {
+          const ul = $(this).next('ul')
+          ul.slideToggle()
+          $('.sidebar-group > ul').not(ul).slideUp()
+        })
+      })
+    </script>
+  </body>
+</html>
