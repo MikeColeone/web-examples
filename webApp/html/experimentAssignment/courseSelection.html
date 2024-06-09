@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
@@ -165,6 +165,208 @@
       }
 
       drawTable()
+    </script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Selection System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: antiquewhite;
+      }
+      th,
+      td {
+        width: 150px;
+      }
+      .disabled-row {
+        background-color: #f0f0f0;
+        color: #a0a0a0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 创建表格接受数据 -->
+    <table id="courseTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>课程名</th>
+          <th>学分</th>
+          <th>起始周</th>
+          <th>上课时间</th>
+          <th>教师</th>
+          <th>选退课</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      // 模拟课程数据
+      const courses = [
+        {
+          id: 100,
+          name: '数据库原理',
+          point: 3.0,
+          startWeek: 1,
+          endWeek: 10,
+          dayOfWeek: 1,
+          period: 12,
+          teacherName: '谭文韬',
+          times: 0
+        },
+        {
+          id: 101,
+          name: '影视赏析',
+          point: 1.5,
+          startWeek: 1,
+          endWeek: 8,
+          dayOfWeek: 1,
+          period: 12,
+          teacherName: '李春泰',
+          times: 0
+        },
+        {
+          id: 102,
+          name: 'Web系统框架',
+          point: 2.5,
+          startWeek: 11,
+          endWeek: 17,
+          dayOfWeek: 1,
+          period: 12,
+          teacherName: '王子阳',
+          times: 0
+        },
+        {
+          id: 103,
+          name: '托福阅读',
+          point: 2.0,
+          startWeek: 5,
+          endWeek: 15,
+          dayOfWeek: 1,
+          period: 12,
+          teacherName: '李景阳',
+          times: 0
+        },
+        {
+          id: 104,
+          name: 'Web开发技术',
+          point: 2.5,
+          startWeek: 1,
+          endWeek: 8,
+          dayOfWeek: 1,
+          period: 34,
+          teacherName: '徐懿',
+          times: 0
+        },
+        {
+          id: 105,
+          name: '高级英语视听',
+          point: 2.0,
+          startWeek: 3,
+          endWeek: 10,
+          dayOfWeek: 1,
+          period: 34,
+          teacherName: '龙超悦',
+          times: 0
+        }
+      ]
+
+      $(document).ready(function () {
+        // 判断课程是否冲突
+        function hasConflict(course1, course2) {
+          const weekConflict =
+            course1.startWeek <= course2.endWeek && course1.endWeek >= course2.startWeek
+          const timeConflict =
+            course1.dayOfWeek === course2.dayOfWeek && course1.period === course2.period
+          return weekConflict && timeConflict
+        }
+
+        // 冲突课程映射
+        const conflictMap = new Map()
+
+        // 初始化冲突信息
+        function isConflicts() {
+          courses.forEach((course) => {
+            const conflicts = courses.filter(
+              (otherCourse) => course.id !== otherCourse.id && hasConflict(course, otherCourse)
+            )
+            conflictMap.set(
+              course.id,
+              conflicts.map((c) => c.id)
+            )
+          })
+        }
+
+        function getCourseById(courseId) {
+          return courses.find((course) => course.id === courseId)
+        }
+
+        function judgeTimes(times) {
+          if (times > 0) return true
+          return false
+        }
+
+        // 切换课程选中状态
+        function toggleCourse(courseId, checkbox) {
+          const isChecked = checkbox.checked
+          const conflicts = conflictMap.get(courseId) || []
+
+          conflicts.forEach((conflictId) => {
+            const course = getCourseById(conflictId)
+
+            const conflictCheckbox = $(`input[value="${conflictId}"]`)
+            if (conflictCheckbox.length) {
+              if (isChecked) course.times++
+              else course.times--
+              conflictCheckbox.prop('disabled', judgeTimes(course.times))
+              const conflictRow = conflictCheckbox.closest('tr')
+              conflictRow.toggleClass('disabled-row', isChecked || judgeTimes(course.times))
+            }
+          })
+        }
+
+        // 获取表格主体
+        const tbody = $('#courseTable tbody')
+
+        // 动态渲染表格内容
+        courses.forEach((course) => {
+          const row = $('<tr>')
+          row.html(`
+          <td>${course.id}</td>
+          <td>${course.name}</td>
+          <td>${course.point}</td>
+          <td>第${course.startWeek}周到${course.endWeek}周</td>
+          <td>周${course.dayOfWeek}${course.period}节</td>
+          <td>${course.teacherName}</td>
+          <td><input type="checkbox" name="selected" value="${course.id}" /></td>
+        `)
+          tbody.append(row)
+        })
+
+        // 初始化冲突信息
+        isConflicts()
+
+        // 绑定复选框的变更事件
+        $('input[name="selected"]').on('change', function () {
+          const courseId = parseInt($(this).val())
+          toggleCourse(courseId, this)
+        })
+      })
     </script>
   </body>
 </html>
