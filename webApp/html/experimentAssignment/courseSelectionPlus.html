@@ -115,7 +115,28 @@
         }
       ]
 
-      // 判断课程是否冲突
+      // 获取表格主体
+      const tbody = document.querySelector('#courseTable tbody')
+
+      // 动态渲染表格内容
+      courses.forEach((course) => {
+        const row = document.createElement('tr')
+        row.innerHTML = `
+    <td>${course.id}</td>
+    <td>${course.name}</td>
+    <td>${course.point}</td>
+    <td>第${course.startWeek}周到${course.endWeek}周</td>
+    <td>周${course.dayOfWeek}${course.period}节</td>
+    <td>${course.teacherName}</td>
+    <td><input type="checkbox"  name="selected" onchange="toggleCourse(${course.id}, this)" /></td>
+  `
+        tbody.appendChild(row)
+        course.$tr = row
+        course.$input = row.querySelector('input[type="checkbox"]')
+      })
+
+      /*先渲染并初始化$tr 和 $input属性， 解决Cannot read properties of undefined (reading 'classList')指出在尝试访问未定义的属性时出现了问题。在这种情况下*/
+      // 判断课程是否冲突逻辑代码
       function hasConflict(course1, course2) {
         const weekConflict =
           course1.startWeek <= course2.endWeek && course1.endWeek >= course2.startWeek
@@ -129,63 +150,47 @@
       //初始化冲突信息
       function isConflicts() {
         courses.forEach((course) => {
-          const conflicts = courses.filter(
-            (otherCourse) => course.id !== otherCourse.id && hasConflict(course, otherCourse)
-          )
-          conflictMap.set(
-            course.id,
-            conflicts.map((c) => c.id)
-          )
+          //筛选错误消息
+          const conflicts = courses
+            .filter(
+              (otherCourse) => course.id !== otherCourse.id && hasConflict(course, otherCourse)
+            )
+            .map((c) => ({
+              c: c,
+              $input: c.$input,
+              $tr: c.$tr
+            }))
+          conflictMap.set(course.id, conflicts)
+          // conflictMap.forEach((value, key) => {
+          //   console.log(`Course ID: ${key}`)
+          //   value.forEach((conflict) => {
+          //     console.log(`Conflict: ${conflict.c.id}`)
+          //   })
+          // })
         })
       }
-
-      function getCourseById(courseId) {
-        return courses.find((course) => course.id === courseId)
-      }
-
-      function judgeTimes(times) {
-        if (times > 0) return true
-        return false
-      }
+      isConflicts()
       // 切换课程选中状态
       function toggleCourse(courseId, checkbox) {
         const isChecked = checkbox.checked
         const conflicts = conflictMap.get(courseId) || []
+        conflicts.forEach((course) => {
+          console.log(course)
+        })
+        conflicts.forEach((conflict) => {
+          const course = conflict.c
 
-        conflicts.forEach((conflictId) => {
-          const course = getCourseById(conflictId)
-
-          const conflictCheckbox = document.querySelector(`input[value="${conflictId}"]`)
+          // console.log(course)
+          const conflictCheckbox = conflict.c.$input
           if (conflictCheckbox) {
             if (isChecked) course.times++
             else course.times--
-            conflictCheckbox.disabled = judgeTimes(course.times)
-            const conflictRow = conflictCheckbox.closest('tr')
-            conflictRow.classList.toggle('disabled-row', isChecked || judgeTimes(course.times))
+            conflictCheckbox.disabled = course.times > 0 ? true : false
+            const conflictRow = conflict.$tr
+            conflictRow.classList.toggle('disabled-row', isChecked || conflictCheckbox.disabled)
           }
         })
       }
-
-      // 获取表格主体
-      const tbody = document.querySelector('#courseTable tbody')
-
-      // 动态渲染表格内容
-      courses.forEach((course) => {
-        const row = document.createElement('tr')
-        row.innerHTML = `
-                <td>${course.id}</td>
-                <td>${course.name}</td>
-                <td>${course.point}</td>
-                <td>第${course.startWeek}周到${course.endWeek}周</td>
-                <td>周${course.dayOfWeek}${course.period}节</td>
-                <td>${course.teacherName}</td>
-                <td><input type="checkbox" name="selected" value="${course.id}" onchange="toggleCourse(${course.id}, this)" /></td>
-            `
-        tbody.appendChild(row)
-      })
-
-      // 初始化冲突信息
-      isConflicts()
     </script>
   </body>
 </html>
