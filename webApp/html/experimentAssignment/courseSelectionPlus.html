@@ -22,7 +22,7 @@
       }
       .disabled-row {
         background-color: #f0f0f0;
-        color: #a0a0a0;
+        color: #caadad;
         pointer-events: none;
       }
     </style>
@@ -131,19 +131,12 @@
     <td><input type="checkbox"  name="selected" onchange="toggleCourse(${course.id}, this)" /></td>
   `
         tbody.appendChild(row)
-        course.$tr = row
-        course.$input = row.querySelector('input[type="checkbox"]')
+        course.tr = row
+        course.input = row.querySelector('input[type="checkbox"]')
       })
 
       /*先渲染并初始化$tr 和 $input属性， 解决Cannot read properties of undefined (reading 'classList')指出在尝试访问未定义的属性时出现了问题。在这种情况下*/
       // 判断课程是否冲突逻辑代码
-      function hasConflict(course1, course2) {
-        const weekConflict =
-          course1.startWeek <= course2.endWeek && course1.endWeek >= course2.startWeek
-        const timeConflict =
-          course1.dayOfWeek === course2.dayOfWeek && course1.period === course2.period
-        return weekConflict && timeConflict
-      }
       // 冲突课程映射
       const conflictMap = new Map()
 
@@ -152,13 +145,18 @@
         courses.forEach((course) => {
           //筛选错误消息
           const conflicts = courses
-            .filter(
-              (otherCourse) => course.id !== otherCourse.id && hasConflict(course, otherCourse)
-            )
+            .filter((otherCourse) => course.id !== otherCourse.id)
+            .filter((otherCourse) => {
+              const weekConflict =
+                course.startWeek <= otherCourse.endWeek && course.endWeek >= otherCourse.startWeek
+              const timeConflict =
+                course.dayOfWeek === otherCourse.dayOfWeek && course.period === otherCourse.period
+              return weekConflict && timeConflict
+            })
             .map((c) => ({
               c: c,
-              $input: c.$input,
-              $tr: c.$tr
+              input: c.input,
+              tr: c.tr
             }))
           conflictMap.set(course.id, conflicts)
           // conflictMap.forEach((value, key) => {
@@ -181,12 +179,12 @@
           const course = conflict.c
 
           // console.log(course)
-          const conflictCheckbox = conflict.c.$input
+          const conflictCheckbox = conflict.c.input
           if (conflictCheckbox) {
             if (isChecked) course.times++
             else course.times--
             conflictCheckbox.disabled = course.times > 0 ? true : false
-            const conflictRow = conflict.$tr
+            const conflictRow = conflict.tr
             conflictRow.classList.toggle('disabled-row', isChecked || conflictCheckbox.disabled)
           }
         })

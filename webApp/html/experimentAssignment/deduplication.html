@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deduplication</title>
+    <style></style>
+  </head>
+  <body>
+    <script>
+      // const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
+
+      //定义数组变量
+      const objs = []
+      for (let i = 0; i < 8000000; i++) {
+        objs.push({ id: Math.floor(Math.random() * 1_000) })
+      }
+
+      function testFunction(func) {
+        // 记录函数开始时间
+        let startTime = performance.now()
+
+        func(objs)
+        // 记录函数结束时间
+        let endTime = performance.now()
+
+        // 计算函数执行时间（单位：毫秒）
+        let executionTime = endTime - startTime
+
+        return executionTime
+      }
+
+      // 运行函数并获取平均运行时间
+      function averageGetTime(objs) {
+        let totalTime = 0
+        let runs = 100 // 假设运行函数 10 次
+
+        for (let i = 0; i < runs; i++) {
+          totalTime += testFunction(objs)
+        }
+
+        // 计算平均执行时间
+        let averageTime = totalTime / runs
+
+        console.log(`平均执行时间: ${averageTime} 毫秒`)
+      }
+
+      //基于数组
+      function basedArray(objs) {
+        let length = objs.length
+        let ans = []
+
+        // 初始化flag数组
+        let flag = new Array(length).fill(0)
+
+        // 对数组按id进行排序
+        objs.sort((a, b) => a.id - b.id)
+        console.log(objs)
+
+        // 标记不重复的元素
+        for (let i = 0; i < objs.length - 1; i++) {
+          if (objs[i].id !== objs[i + 1].id) {
+            flag[i] = 1
+          }
+        }
+        // 最后一个元素直接标记为1
+        flag[objs.length - 1] = 1
+
+        // 创建ans数组
+        let t = 0
+        for (let i = 0; i < objs.length; i++) {
+          if (flag[i] === 1) {
+            ans[t] = objs[i]
+            t++
+          }
+        }
+
+        console.log(ans)
+      }
+
+      //基于set函数
+      function basedSet() {
+        const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
+        let uniqueIds = new Set()
+        let ans = []
+
+        for (let value of objs) {
+          if (!uniqueIds.has(value.id)) {
+            uniqueIds.add(value.id)
+            ans.push(value)
+          }
+        }
+
+        console.log(ans)
+      }
+
+      //基于对象属性
+      function basedPropoty(objs) {}
+
+      let ans = []
+      //基于Map
+      function basedMap(objs) {
+        // const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
+        let myMap = new Map()
+        for (let value of objs) {
+          myMap.set(value.id, value)
+        }
+        //将答案提取出来
+        ans = Array.from(myMap.values())
+        console.log(ans)
+      }
+      // basedMap()
+
+      //基于对象属性
+    </script>
+  </body>
+</html>
