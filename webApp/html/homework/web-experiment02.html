@@ -1,60 +1,74 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>table</title>
+    <title>Title</title>
     <style>
-      .header {
-        font-size: large;
-        font-weight: bold;
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
       }
-      table tr a {
+      .success {
         display: inline-block;
-        padding: 10px;
-        text-decoration: none;
+        padding: 0px 5px 0px 5px;
+        border-radius: 3px;
         color: white;
         background-color: red;
-        border-radius: 8px;
       }
-      table tr {
+      .warning {
+        display: inline;
+        padding: 0px 5px 0px 5px;
+        border-radius: 3px;
+        color: white;
+        background-color: rgb(225, 225, 75);
+      }
+      table {
+        border-collapse: collapse;
         width: 100%;
+      }
+      td,
+      th {
+        padding: 10px;
         border-bottom: 1px solid black;
       }
-      .text-lable {
-        border-radius: 3px;
-        padding: 5px;
-        color: white;
-        background-color: brown;
+      tbody tr:nth-child(even) {
+        background-color: aliceblue;
       }
-      .alart-lable {
-        border-radius: 8px;
-        padding: 5px;
-        color: white;
-        background-color: yellow;
-      }
-      table th {
-        background-color: white;
-        color: black;
+      tbody tr:nth-child(odd) {
+        background-color: antiquewhite;
       }
 
-      .single {
-        background-color: rgb(236, 228, 218);
+      table tr a {
+        text-decoration: none;
       }
-      .even {
-        background-color: aliceblue;
+      /* td,
+      th {
+        align-items: center;
+      } */
+      a.change,
+      a.delete {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: red;
+      }
+      table a.change:hover,
+      a.delete:hover {
+        transform: scale(1.1);
+        transition: 1s;
       }
     </style>
   </head>
   <body>
-    <div>
-      <p class="header">学生信息</p>
-      <p>
-        说明：以下为2046级学生名单，共四人，
-        <span class="text-lable">成功加载三人</span>
-        <span class="alart-lable">警告：列表不包含降级学生</span>
-      </p>
-    </div>
+    <h1>学生信息</h1>
+    <p>
+      说明:以下为2046级学生名单，共四人，
+      <span class="success">成功加载3人</span>
+      。
+      <span class="warning">警告：列表不包含降级学生</span>
+      。
+    </p>
     <table>
       <thead>
         <tr>
@@ -66,34 +80,34 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="single">
+        <tr>
           <td>1</td>
           <td>郭立新</td>
           <td>软件工程2046级1班</td>
           <td>guo@example.com</td>
           <td>
-            <a href="#">修改</a>
-            <a href="#">删除</a>
+            <a href="#" class="change">修改</a>
+            <a href="#" class="delete">删除</a>
           </td>
         </tr>
-        <tr class="even">
+        <tr>
           <td>2</td>
           <td>黄英</td>
           <td>软件工程2046级1班</td>
           <td>huang@example.com</td>
           <td>
-            <a href="#">修改</a>
-            <a href="#">删除</a>
+            <a href="#" class="change">修改</a>
+            <a href="#" class="delete">删除</a>
           </td>
         </tr>
-        <tr class="single">
+        <tr>
           <td>3</td>
           <td>吕惠玲</td>
           <td>软件工程2046级2班</td>
-          <td>lu@example.com</td>
+          <td>lv@example.com</td>
           <td>
-            <a href="#">修改</a>
-            <a href="#">删除</a>
+            <a href="#" class="change">修改</a>
+            <a href="#" class="delete">删除</a>
           </td>
         </tr>
       </tbody>

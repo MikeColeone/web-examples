@@ -4,52 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Deduplication</title>
-    <style></style>
+    <style>
+      * {
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
+    <div class="main">
+      <p>去重测试时间</p>
+      <p>执行1000000组值求10次平均值</p>
+      <button id="for" onclick="deduplicate('for')">基于for循环</button>
+      <button id="map" onclick="deduplicate('map')">基于Map</button>
+      <button id="set" onclick="deduplicate('set')">基于set函数</button>
+      <button id="object" onclick="deduplicate('object')">基于对象属性</button>
+      <p id="targetFor"></p>
+      <p id="targetMap"></p>
+      <p id="targetSet"></p>
+      <p id="targetObj"></p>
+
+      <p>
+        测试结果： set>map>object>for
+        <br />
+        基于for循环存在一次时间骤减的问题 原因是在第一执行时执行了一次排序
+      </p>
+    </div>
     <script>
       // const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
 
       //定义数组变量
       const objs = []
-      for (let i = 0; i < 8000000; i++) {
+      for (let i = 0; i < 1000000; i++) {
         objs.push({ id: Math.floor(Math.random() * 1_000) })
       }
 
-      function testFunction(func) {
+      function average(func, objs) {
         // 记录函数开始时间
         let startTime = performance.now()
-
         func(objs)
         // 记录函数结束时间
         let endTime = performance.now()
-
         // 计算函数执行时间（单位：毫秒）
         let executionTime = endTime - startTime
-
-        return executionTime
-      }
-
-      // 运行函数并获取平均运行时间
-      function averageGetTime(objs) {
         let totalTime = 0
-        let runs = 100 // 假设运行函数 10 次
-
+        let runs = 100
         for (let i = 0; i < runs; i++) {
-          totalTime += testFunction(objs)
+          totalTime += executionTime
         }
 
         // 计算平均执行时间
         let averageTime = totalTime / runs
-
         console.log(`平均执行时间: ${averageTime} 毫秒`)
+        return averageTime
       }
 
       //基于数组
       function basedArray(objs) {
         let length = objs.length
         let ans = []
-
         // 初始化flag数组
         let flag = new Array(length).fill(0)
 
@@ -79,8 +91,8 @@
       }
 
       //基于set函数
-      function basedSet() {
-        const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
+      function basedSet(objs) {
+        // const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
         let uniqueIds = new Set()
         let ans = []
 
@@ -95,11 +107,23 @@
       }
 
       //基于对象属性
-      function basedPropoty(objs) {}
+      function basedObject(objs) {
+        let obj = {}
+        let ans = []
 
-      let ans = []
+        // 遍历数组中的每个元素
+        objs.forEach((item) => {
+          // 如果对象中不存在该属性，则将该元素添加到结果数组中，并在对象中标记该属性
+          if (!obj.hasOwnProperty(item)) {
+            obj.item = true
+            ans.push(item)
+          }
+        })
+        console.log(ans)
+      }
       //基于Map
       function basedMap(objs) {
+        let ans = []
         // const objs = [{ id: 8 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]
         let myMap = new Map()
         for (let value of objs) {
@@ -109,9 +133,38 @@
         ans = Array.from(myMap.values())
         console.log(ans)
       }
-      // basedMap()
-
-      //基于对象属性
+      function deduplicate(method) {
+        let testTime = 0
+        switch (method) {
+          case 'for':
+            // basedArray(objs)
+            testTime = average((objs) => {
+              basedArray(objs)
+            }, objs)
+            document.getElementById('targetFor').textContent = `基于for循环去重结果: ${testTime}`
+            break
+          case 'map':
+            testTime = average((objs) => {
+              basedMap(objs)
+            }, objs)
+            document.getElementById('targetMap').textContent = `基于Map去重结果: ${testTime}`
+            break
+          case 'set':
+            testTime = average((objs) => {
+              basedSet(objs)
+            }, objs)
+            document.getElementById('targetSet').textContent = `基于set去重结果: ${testTime}`
+            break
+          case 'object':
+            testTime = average((objs) => {
+              basedObject(objs)
+            }, objs)
+            document.getElementById('targetObj').textContent = `基于对象属性去重结果: ${testTime}`
+            break
+          default:
+            console.log('未知的方法')
+        }
+      }
     </script>
   </body>
 </html>

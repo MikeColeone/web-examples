@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .fad {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        text-align: center;
+      }
+      .fad-btn {
+        border-radius: 100%;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      /* 初始化menu状态 */
+      .fad-menu {
+        display: none;
+      }
+      ul {
+        list-style: none;
+      }
+      ul li a {
+        text-decoration: none;
+      }
+      ul li#delete .material-icons {
+        color: red;
+      }
+      .material-icons {
+        display: block;
+        color: blue;
+        border-radius: 100%;
+        font-size: 50px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fad">
+      <div class="fad-btn"><i class="material-icons">home</i></div>
+      <div class="fad-menu">
+        <ul>
+          <li>
+            <a href="#"><i class="material-icons">shop</i></a>
+          </li>
+          <li>
+            <a href="#"><i class="material-icons">face</i></a>
+          </li>
+          <li id="delete">
+            <a href="#"><i class="material-icons">delete</i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        let fadbtn = $(this).find('div.fad-btn')
+        $('.fad').hover(
+          function () {
+            fadbtn.find('i').text('feed')
+            fadbtn.animate(
+              { deg: 180 },
+              {
+                step: function (now) {
+                  fadbtn.css('transform', 'rotate(' + now + 'deg)')
+                },
+                duration: 300
+              }
+            )
+            // 显示二级图标菜单，淡入效果
+            $(this).find('.fad-menu').fadeIn(300)
+          },
+          function () {
+            fadbtn.find('.fad-btn').text('home')
+            fadbtn.animate(
+              { deg: 0 },
+              {
+                step: function (now) {
+                  fadbtn.css('transform', 'rotate(' + now + 'deg)')
+                },
+                duration: 300
+              }
+            )
+
+            // 隐藏二级图标菜单，淡出效果
+            $(this).find('.fad-menu').fadeOut(300)
+          }
+        )
+      })
+    </script>
+  </body>
+</html>

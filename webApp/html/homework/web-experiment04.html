@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>注册表单</title>
+    <style>
+      .warning {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>注册表单</h1>
+      <input type="checkbox" id="agreeCheckbox" onchange="checkAgreement()" />
+      <label for="agreeCheckbox">我已阅读相关说明并遵守相关法律</label>
+      <br />
+      <div class="form">
+        <form action="#" method="post">
+          用户名：
+          <input type="text" name="username" id="name" minlength="6" required disabled />
+          <br />
+          未来意向
+          <label for="future">Java工程师</label>
+          <input type="radio" name="future" class="purpose" disabled />
+          <label for="future">测试工程师</label>
+          <input type="radio" name="future" class="purpose" disabled />
+          <label for="future">前端工程师</label>
+          <input type="radio" name="future" class="purpose" disbled />
+          <br />
+          <p class="hint">请在一下两个选择两项最喜欢的项目</p>
+
+          <ul>
+            <li>
+              <lable>
+                <input type="checkbox" name="item" class="courses" disabled />
+                web开发技术
+              </lable>
+            </li>
+            <li>
+              <lable>
+                <input type="checkbox" name="item" class="courses" disabled />
+                软件项目管理
+              </lable>
+            </li>
+            <li>
+              <lable>
+                <input type="checkbox" name="item" class="courses" disabled />
+                数据库原理
+              </lable>
+            </li>
+            <li>
+              <lable>
+                <input type="checkbox" name="item" class="courses" disabled />
+                系统分析与测试
+              </lable>
+            </li>
+          </ul>
+
+          <br />
+          <p>地址：</p>
+          <input type="text" name="address" disbled />
+          <button class="increase">添加地址</button>
+          <br />
+          <button type="submit" id="submitButton" disabled>提交</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      //初始化全为空
+      function checkAgreement() {
+        const agreeCheckbox = document.getElementById('agreeCheckbox')
+        const submitButton = document.getElementById('submitButton')
+        const inputName = document.getElementById('name')
+        const itemElement = document.querySelectorAll('.courses')
+        const futureElement = document.querySelectorAll('.purpose')
+
+        itemElement.forEach((checkbox) => {
+          checkbox.disabled = !agreeCheckbox
+        })
+
+        futureElement.forEach((checkbox) => {
+          checkbox.disabled = !agreeCheckbox
+        })
+        submitButton.disabled = !agreeCheckbox.checked
+        inputName.disabled = !agreeCheckbox.checked
+
+        if (!agreeCheckbox.checked) {
+          inputName.value = '' // 清空输入框内容
+        }
+      }
+
+      //设置只能选择两个课程
+      function selectCourses() {
+        const itemElement = document.querySelectorAll('.courses')
+        //初始化点击框
+        let checkNums = 0
+        //遍历checkbox
+        itemElement.forEach((checkbox) => {
+          console.log(checkbox)
+          //当存在点击选中之后就计数++
+          checkNums = checkbox.checked == true ? checkNums++ : checkNums
+        })
+
+        if (checkNums == 2)
+          //禁用剩余未选中的复选框
+          itemElement.forEach((checkbox) => {
+            checkbox.disabled = !checkbox.checked
+          })
+      }
+
+      selectCourses()
+    </script>
+  </body>
+</html>
