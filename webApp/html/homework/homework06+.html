@@ -21,7 +21,6 @@
         width: 100%;
         height: 100%;
       }
-
       .modal-dialog {
         margin-left: auto;
         margin-right: auto;
@@ -41,19 +40,18 @@
         border-bottom: 2px solid black;
       }
       .modal-dialog-header {
-        font: 30px bold;
+        font-size: 30px;
+        font-weight: bold;
       }
-
       .modal-dialog-footer {
         text-align: right;
         padding: 15px;
         margin: 10px;
-
         cursor: pointer;
         border-radius: 5px;
         margin-left: auto;
       }
-      buttton {
+      button {
         background: #333;
         color: white;
         border-radius: 8px;
@@ -82,44 +80,34 @@
             repudiandae. Eligendi tenetur porro quibusdam, inventore non sed! Nobis!
           </div>
           <div class="modal-dialog-footer">
-            <button data-modal-dismiss>Save</button>
             <button data-modal-dismiss>Close</button>
+            <button data-modal-dismiss>Save</button>
           </div>
         </div>
       </div>
     </div>
     <script>
-      $(document).ready(function () {
-        // 监听激活模态框的按钮点击事件
+      $(function () {
         $('[data-modal-target]').click(function () {
-          const targetModal = $(this).data('modal-target')
-          $(targetModal).fadeIn(300, function () {
-            $(this).find('.modal-dialog').animate({ top: '30px' }, 300)
+          const myModal = $(this).data('modal-target') //获取modal
+          $(myModal).fadeIn(500, function () {
+            $(this).find('.modal-dialog').animate({ top: '30px' }, 300, 'swing')
           })
-        })
 
-        // 监听模态框背景区域点击事件，关闭模态框
-        $('.modal').click(function () {
-          $(this)
-            .find('.modal-dialog')
-            .animate({ top: '-50%' }, 300, function () {
-              $(this).closest('.modal').fadeOut(300)
+          function hideDialog(modal) {
+            $(modal).fadeOut(500, function () {
+              $(this).find('.modal-dialog').animate({ top: '-50%' }, 300, 'swing')
             })
-        })
+          }
 
-        // 阻止事件冒泡，避免点击模态框内容区域关闭模态框
-        $('.modal-dialog').click(function (event) {
-          event.stopPropagation()
-        })
+          $('.modal').click(function () {
+            hideDialog(this)
+          })
+          $('.modal-dialog').click(() => false)
 
-        // 监听关闭按钮点击事件，关闭模态框
-        $('[data-modal-dismiss]').click(function () {
-          $(this)
-            .closest('.modal')
-            .find('.modal-dialog')
-            .animate({ top: '-50%' }, 300, function () {
-              $(this).closest('.modal').fadeOut(300)
-            })
+          $('[data-modal-dismiss]').click(function () {
+            hideDialog($(myModal))
+          })
         })
       })
     </script>

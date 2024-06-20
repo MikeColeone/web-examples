@@ -172,9 +172,9 @@
       function toggleCourse(courseId, checkbox) {
         const isChecked = checkbox.checked
         const conflicts = conflictMap.get(courseId) || []
-        conflicts.forEach((course) => {
-          console.log(course)
-        })
+        // conflicts.forEach((course) => {
+        //   console.log(course)
+        // })
         conflicts.forEach((conflict) => {
           const course = conflict.c
 

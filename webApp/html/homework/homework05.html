@@ -65,9 +65,13 @@
     </div>
 
     <script>
-      $(document).ready(function () {
-        let fadbtn = $(this).find('div.fad-btn')
-        $('.fad').hover(
+      $(function () {
+        let fadbtn = $('.fad-btn')
+        let fad = $('.fad')
+        let fadMenu = $('.fad-menu')
+
+        fad.hover(
+          //鼠标悬浮时执行的操作
           function () {
             fadbtn.find('i').text('feed')
             fadbtn.animate(
@@ -75,27 +79,25 @@
               {
                 step: function (now) {
                   fadbtn.css('transform', 'rotate(' + now + 'deg)')
-                },
-                duration: 300
-              }
+                }
+              },
+              300
             )
-            // 显示二级图标菜单，淡入效果
-            $(this).find('.fad-menu').fadeIn(300)
+            fadMenu.fadeIn(300)
           },
+          //鼠标移出之后执行的操作
           function () {
-            fadbtn.find('.fad-btn').text('home')
+            fadbtn.find('i').text('home')
             fadbtn.animate(
               { deg: 0 },
               {
                 step: function (now) {
                   fadbtn.css('transform', 'rotate(' + now + 'deg)')
-                },
-                duration: 300
-              }
+                }
+              },
+              300
             )
-
-            // 隐藏二级图标菜单，淡出效果
-            $(this).find('.fad-menu').fadeOut(300)
+            fadMenu.fadeOut(300)
           }
         )
       })
