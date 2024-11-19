@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Fan Shape</title>
+    <style>
+      .fan-shape {
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        background: conic-gradient(
+          #ff0000 0% 25%,
+          /* 第一段颜色，从0%到25% */ #00ff00 25% 50%,
+          /* 第二段颜色，从25%到50% */ #0000ff 50% 75%,
+          /* 第三段颜色，从50%到75% */ #ffff00 75% 100%
+            /* 第四段颜色，从75%到100% */
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fan-shape"></div>
+  </body>
+</html>
