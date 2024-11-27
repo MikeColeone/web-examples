@@ -10,7 +10,7 @@ class TimeLimitedCache {
     let timeout = setTimeout(() => this.cache.delete(key), duration);
     this.cache.set(key, { value, timeout });
     //取消就定时器
-    return tempInCache ? tempInCache : false;
+    return tempInCache ? true : false;
   }
 
   get(key) {
