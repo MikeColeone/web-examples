@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>基于防抖思想设计</title>
     <style>
       * {
         margin: 0;
@@ -13,7 +13,7 @@
       .container {
         padding: 10px;
       }
-      input[type='text'] {
+      input[type="text"] {
         padding: 5px;
         border-radius: 8px;
       }
@@ -43,15 +43,41 @@
 
   <!-- 修改版 由于使用input会在每一次点击的时候调用函数 造成资源浪费 所以采用点击的方式 -->
   <body>
-    <input type="text" id="myInput" placeholder="点击输入" onclick="myToUpper()" />
+    <input
+      type="text"
+      id="myInput"
+      placeholder="点击输入"
+      onclick="myToUpper()"
+    />
+    <input
+      type="text"
+      id="myInputTest"
+      placeholder="点击输入"
+      onclick="debounceF()"
+    />
     <script>
       function myToUpper() {
         const timeId = setTimeout(function () {
-          clearTimeout(timeId)
-          var inputField = document.getElementById('myInput')
-          inputField.value = inputField.value.toUpperCase()
-        }, 2000)
+          clearTimeout(timeId);
+          var inputField = document.getElementById("myInput");
+          inputField.value = inputField.value.toUpperCase();
+        }, 2000);
       }
+
+      function debounce(fn, delay) {
+        let timer = null;
+        return function () {
+          clearTimeout(timer);
+          timer = setTimeout(fn, delay);
+        };
+      }
+
+      const toUpperF = function () {
+        let inputField = document.getElementById("myInputTest");
+        inputElement.value = inputElement.value.toUpperCase();
+      };
+
+      const debounceF = debounce(toUpperF, 2000);
     </script>
   </body>
 </html>

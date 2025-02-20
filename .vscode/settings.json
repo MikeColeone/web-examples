@@ -1,0 +1,13 @@
+{
+  "editor.fontSize": 14,
+  "window.zoomLevel": 0.8,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "on",
+  "git.enableSmartCommit": true,
+  "workbench.colorTheme": "Default Light+",
+  "vue.updateImportsOnFileMove.enabled": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": false
+}
