@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    // 手写节流函数
+
+    const throttle = (fun, delay) => {
+      let time = null;
+      return function () {
+        if (!time) {
+          time = setTimeout(() => {
+            fun();
+            time = null;
+          }, delay);
+        }
+      };
+    };
+  </script>
+  <body>
+    <button onclick="throttleF()">节流测试</button>
+  </body>
+</html>
