@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name = "zhangsan";
+      const obj = {
+        name: "lisi",
+        fun() {
+          (() => {
+            console.log(this.name);
+          })();
+        },
+        fun2: () => {
+          console.log(this.name);
+        },
+      };
+
+      obj.fun(); // lisi  这里的this指针和fun函数的this一致
+      obj.fun2(); // zhangsan
+    </script>
+  </body>
+</html>

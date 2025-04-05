@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Modal</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       * {
@@ -66,9 +69,10 @@
   <body>
     <div class="container">
       <div class="main">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, similique vel! Ipsam
-        architecto porro excepturi, maxime perspiciatis dignissimos nemo adipisci. Facere maxime
-        necessitatibus aut vitae rem consectetur eos blanditiis nam?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+        similique vel! Ipsam architecto porro excepturi, maxime perspiciatis
+        dignissimos nemo adipisci. Facere maxime necessitatibus aut vitae rem
+        consectetur eos blanditiis nam?
         <br />
         <button data-modal-target="#myModal">打开模态框</button>
       </div>
@@ -77,9 +81,10 @@
         <div class="modal-dialog">
           <div class="modal-dialog-header">Modal Title</div>
           <div class="modal-dialog-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus fugit, animi
-            perspiciatis, vel explicabo ratione alias facere laudantium deserunt officiis, ipsa
-            repudiandae. Eligendi tenetur porro quibusdam, inventore non sed! Nobis!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+            fugit, animi perspiciatis, vel explicabo ratione alias facere
+            laudantium deserunt officiis, ipsa repudiandae. Eligendi tenetur
+            porro quibusdam, inventore non sed! Nobis!
           </div>
           <div class="modal-dialog-footer">
             <button data-modal-dismiss>Save</button>
@@ -91,37 +96,37 @@
     <script>
       $(document).ready(function () {
         // 监听激活模态框的按钮点击事件
-        $('[data-modal-target]').click(function () {
-          const targetModal = $(this).data('modal-target')
+        $("[data-modal-target]").click(function () {
+          const targetModal = $(this).data("modal-target");
           $(targetModal).fadeIn(300, function () {
-            $(this).find('.modal-dialog').animate({ top: '30px' }, 300)
-          })
-        })
+            $(this).find(".modal-dialog").animate({ top: "30px" }, 300);
+          });
+        });
 
         // 监听模态框背景区域点击事件，关闭模态框
-        $('.modal').click(function () {
+        $(".modal").click(function () {
           $(this)
-            .find('.modal-dialog')
-            .animate({ top: '-50%' }, 300, function () {
-              $(this).closest('.modal').fadeOut(300)
-            })
-        })
+            .find(".modal-dialog")
+            .animate({ top: "-50%" }, 300, function () {
+              $(this).closest(".modal").fadeOut(300);
+            });
+        });
 
         // 阻止事件冒泡，避免点击模态框内容区域关闭模态框
-        $('.modal-dialog').click(function (event) {
-          event.stopPropagation()
-        })
+        $(".modal-dialog").click(function (event) {
+          event.stopPropagation();
+        });
 
         // 监听关闭按钮点击事件，关闭模态框
-        $('[data-modal-dismiss]').click(function () {
+        $("[data-modal-dismiss]").click(function () {
           $(this)
-            .closest('.modal')
-            .find('.modal-dialog')
-            .animate({ top: '-50%' }, 300, function () {
-              $(this).closest('.modal').fadeOut(300)
-            })
-        })
-      })
+            .closest(".modal")
+            .find(".modal-dialog")
+            .animate({ top: "-50%" }, 300, function () {
+              $(this).closest(".modal").fadeOut(300);
+            });
+        });
+      });
     </script>
   </body>
 </html>
