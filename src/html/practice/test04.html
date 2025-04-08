@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手写promiss.all</title>
+  </head>
+  <body>
+    <div>
+      Promise.all() 方法接收一个 Promise 对象数组作为参数，返回一个新的 Promise
+      对象。该 Promise 对象在所有的 Promise 对象都成功时才会成功，其中一个
+      Promise 对象失败时，则该 Promise 对象立即失败。
+    </div>
+  </body>
+  <script>
+    Promise.all = function (promises) {
+      let result;
+      let length = promises.length;
+      let count = 0;
+      return new Promise((resolve, reject) => {
+        for (let i = 0; i < length; i++) {
+          Promise.resolve(promises[i]).then((res) => {
+            count++;
+            result[i] = res;
+            if (count === length) {
+              resolve(result);
+            }
+          }, reject);
+        }
+      });
+    };
+  </script>
+</html>

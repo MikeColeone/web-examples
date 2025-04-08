@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数柯里化</title>
+  </head>
+  <body>
+    <div>
+      函数柯里化，通过不断传参，不断但会新函数，当到达length的时候就会完成传参，调用原函数
+    </div>
+    <script>
+      function sum(a, b, c) {
+        console.log(a + b + c);
+      }
+
+      function curry(fn) {
+        return function curried(...args) {
+          if (args.length >= fn.length) {
+            // 如果传入的参数长度大于等于原函数的参数长度
+
+            return fn.apply(this, args); // 执行原函数
+            // 执行原函数
+          } else {
+            // 返回新函数
+          return function(...args2){
+            return curried.apply(this,args.concat(args2));
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

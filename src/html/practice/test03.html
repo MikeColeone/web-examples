@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const result = add[1][2] + 3;
+      console.log(result); // 6
+      const result2 = add[3][4][5] + 6;
+      console.log(result2); // 18
+
+      //   实现add对象 将下标累加
+      //代理对象 实际操作的是代理对象 拦截到我们的访问 实际上都是出发代理对象的set 和 get方法去访问目标对象的属性
+      const add = new Proxy(
+        {}, //目标对象
+        {
+          get(target, prop) {
+            if (prop === "value") {
+              return Object.values(target).reduce((a, b) => a + b, 0);
+            }
+            target[prop] = Number(prop);
+            return add;
+          },
+        }
+      );
+    </script>
+  </body>
+</html>
