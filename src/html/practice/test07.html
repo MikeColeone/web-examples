@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>变量遮蔽</title>
+  </head>
+  <body>
+    <div>
+      在函数内部调用变量是会查找内部作用域，而不会查询外部作用域，函数会遮蔽外部变量
+    </div>
+  </body>
+  <script>
+    let test = 1;
+    (function test() {
+      // 这里的test是函数作用域内的变量
+      // 函数是只读的
+      test = 2;
+      console.log(test);
+    })();
+  </script>
+</html>
