@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>isNaN</title>
+  </head>
+  <body>
+    <div>表示不是数字 在java中没有这个类型只能抛出异常终止程序</div>
+    <div>isNaN先尝试转化为数字 无法转则返回true</div>
+    <div>Number.isNaN:直接检查一个值是否为NaN</div>
+  </body>
+
+  <script>
+    console.log(isNaN("123")); // false
+    console.log(NaN + true);
+    console.log(NaN + false);
+    console.log(NaN + null);
+    console.log(NaN + undefined);
+    //与任何值都不相等 包括自身
+  </script>
+</html>
