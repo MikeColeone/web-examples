@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>动态执行</title>
+  </head>
+  <body>
+    <script>
+      let name = "你好";
+      let obj = {
+        name,
+      };
+      console.log(obj.name);
+
+      for (let i = 0; i < 1000; i++) {
+        setTimeout(() => {
+          console.log(i);
+        }, 1000);
+      }
+
+      // 你会在 1 秒后打印出 0 到 999，因为 let 有块级作用域，每次循环都会创建一个新的 i 的作用域，回调函数中引用的是各自的 i 的值。
+
+      // for (var i = 0; i < 1000; i++) {
+      //   setTimeout(() => {
+      //     console.log(i);
+      //   }, 1000);
+      // }
+
+      // 你会在 1 秒后打印出 1000 个 1000，因为 var 没有块级作用域，所有回调共享的是同一个变量 i 的引用，而循环早已把它变成 1000。
+    </script>
+  </body>
+</html>
