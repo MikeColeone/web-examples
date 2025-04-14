@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>z-index示例</title>
+    <style>
+      /* 创建一个类名为box的样式，设置宽度、高度、背景颜色和绝对定位 */
+      .box {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+      }
+
+      /* 第一个盒子，设置背景颜色为红色，z-index为1，意味着它在第二层（0是默认层） */
+      .box1 {
+        background-color: red;
+        z-index: 1;
+      }
+
+      /* 第二个盒子，设置背景颜色为蓝色，z-index为2，它在第三层，会显示在红色盒子上面 */
+      .box2 {
+        background-color: blue;
+        z-index: 2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 创建第一个盒子 -->
+    <div class="box box1"></div>
+    <!-- 创建第二个盒子 -->
+    <div class="box box2"></div>
+  </body>
+</html>
