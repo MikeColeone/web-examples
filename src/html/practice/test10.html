@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深拷贝浅拷贝</title>
+  </head>
+  <body>
+    <div>
+      <p>浅拷贝： 只复制一层属性，引用类型和共享地址</p>
+      <p>深拷贝：递归的复制对象的所有层级属性，引用类型也会新建一份</p>
+    </div>
+  </body>
+  <script>
+    const obj1 = {
+      name: "Mike",
+      info: {
+        age: 25,
+      },
+    };
+    const shallow = { ...obj1 };
+    shallow.info.age = 30; // 修改了引用类型的值
+    console.log(obj1.info.age); // 30，obj1也被修改了，因为info是引用类型，指向同一块内存地址
+
+    //深拷贝
+    const deep = JSON.parse(JSON.stringify(obj1));
+    deep.info.age = 40;
+    console.log(obj1.info.age); // 30 ✅ 不被影响
+  </script>
+</html>
