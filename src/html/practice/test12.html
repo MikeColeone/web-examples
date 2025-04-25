@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>对象扁平化</title>
+  </head>
+  <body></body>
+  <script>
+    function flattenObject(obj, parentKey = "", result = {}) {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          const newKey = parentKey ? `${parentKey}.${key}` : key;
+          if (typeof obj[key] === "object" && obj[key] !== null) {
+            flattenObject(obj[key], newKey, result);
+          } else {
+            result[newKey] = obj[key];
+          }
+        }
+      }
+      return result;
+    }
+
+    const originalObj = { a: 3, b: { c: 4, d: [6, 6] } };
+    const flattenedObj = flattenObject(originalObj);
+    console.log(flattenedObj);
+  </script>
+</html>
