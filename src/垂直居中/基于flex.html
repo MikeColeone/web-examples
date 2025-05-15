@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>基于flex的垂直居中</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* 让整个页面高度为视口高度 */
+    }
+    /* .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  
+}
+ */
+  </style>
+  <body>
+    <div class="container">
+      <div>demo</div>
+    </div>
+  </body>
+</html>
+
+<!-- 这是目前最主流的方法 在复杂的盒子模型了 flex是最适合的 -->
