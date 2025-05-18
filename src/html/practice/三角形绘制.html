@@ -3,26 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>纯CSS三角形与颜色解析</title>
     <style>
+      /* 定义单个三角形（以右下角三角形为例） */
       .triangle {
-        width: 0px;
-        height: 0px; /*只依赖边框定义实际宽高*/
-        border: 100px solid;
-        border-color: orangered skyblue gold yellowgreen;
+        width: 0;
+        height: 0;
+        /* 隐藏上边框和左边框，只显示右下边框 */
+        border-width: 100px;
+        border-style: solid;
+        border-color: transparent transparent orangered transparent; /* 透明 透明 橙色 透明 */
       }
     </style>
   </head>
   <body>
     <div class="triangle"></div>
+
     <script>
       const triangle = document.querySelector(".triangle");
-      const borderColor = getComputedStyle(triangle).borderColor;
-      console.log(borderColor);
-      const colors = borderColor.split(",").map((color) => color.trim());
-      console.log(colors);
-      const [r, g, b] = colors.map((color) => parseInt(color));
-      console.log(r, g, b);
+      // 获取计算后的边框颜色（格式如：rgba(255, 69, 0, 1)）
+      const borderColor = getComputedStyle(triangle).borderBottomColor; // 取底部边框颜色（橙色）
+
+      // 解析 RGB 值
+      if (borderColor.startsWith("rgba")) {
+        // 提取 RGB 数值（忽略 alpha 通道）
+        const rgbValues = borderColor
+          .replace("rgba(", "")
+          .replace(")", "")
+          .split(",")
+          .slice(0, 3) // 取前三个值（R, G, B）
+          .map((value) => parseInt(value.trim()));
+
+        const [r, g, b] = rgbValues;
+        console.log(`RGB值：${r}, ${g}, ${b}`); // 输出：255, 69, 0
+      }
     </script>
   </body>
 </html>
