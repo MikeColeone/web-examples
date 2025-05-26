@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sort Example</title>
+    <style>
+      button {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="sort-price">按价格排序（升序）</button>
+    <button id="sort-sales">按销量排序（升序）</button>
+
+    <ul id="item-list">
+      <li data-price="42" data-sales="100">价格: 42 元，销量: 100 件</li>
+      <li data-price="7" data-sales="300">价格: 7 元，销量: 300 件</li>
+      <li data-price="13" data-sales="150">价格: 13 元，销量: 150 件</li>
+      <li data-price="99" data-sales="80">价格: 99 元，销量: 80 件</li>
+    </ul>
+
+    <script>
+      const ul = document.getElementById("item-list");
+      let ascending = true; // 初始为升序
+
+      function sortList(type) {
+        // 取出所有 li 转为数组
+        const items = Array.from(document.querySelectorAll("#item-list li"));
+
+        // 排序
+        items.sort((a, b) => {
+          const aVal = parseFloat(a.dataset[type]);
+          const bVal = parseFloat(b.dataset[type]);
+          return ascending ? aVal - bVal : bVal - aVal;
+        });
+
+        // 重新渲染
+        ul.innerHTML = "";
+        items.forEach((li) => ul.appendChild(li));
+      }
+
+      // 绑定按钮事件
+      const priceBtn = document.getElementById("sort-price");
+      const salesBtn = document.getElementById("sort-sales");
+
+      priceBtn.addEventListener("click", () => {
+        sortList("price");
+        ascending = !ascending; // 每次点击切换升降序
+        priceBtn.textContent = `按价格排序（${ascending ? "升序" : "降序"}）`;
+        salesBtn.textContent = `按销量排序（升序）`; // 重置另一个按钮
+      });
+
+      salesBtn.addEventListener("click", () => {
+        sortList("sales");
+        ascending = !ascending;
+        salesBtn.textContent = `按销量排序（${ascending ? "升序" : "降序"}）`;
+        priceBtn.textContent = `按价格排序（升序）`;
+      });
+    </script>
+  </body>
+</html>
