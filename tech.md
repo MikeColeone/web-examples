@@ -71,4 +71,58 @@
 
 getFileWithCache 尝试从缓存中加载数据，缓存命中会立即返回结果，否则会下载数据并返回下载的数据并填充缓存
 
-## 前端缓存
+## 类数组
+
+`Array.from(` 是 JavaScript 中用来从类似数组的对象（比如类数组对象、字符串、Set、Map、甚至是可迭代对象）创建一个新的数组的方法。
+
+简单说，`Array.from` 能把“类数组”或“可迭代对象”转成真正的数组。
+
+---
+
+### 基本用法示例：
+
+```js
+// 类数组对象（有 length 属性和索引）
+const arrayLike = { 0: "a", 1: "b", length: 2 };
+const arr = Array.from(arrayLike); // ['a', 'b']
+
+// 字符串转数组
+const str = "hello";
+const chars = Array.from(str); // ['h', 'e', 'l', 'l', 'o']
+
+// Set 转数组
+const set = new Set([1, 2, 3]);
+const arrFromSet = Array.from(set); // [1, 2, 3]
+
+// Map 转数组
+const map = new Map([
+  ["a", 1],
+  ["b", 2],
+]);
+const arrFromMap = Array.from(map); // [['a', 1], ['b', 2]]
+```
+
+---
+
+### 第二个参数（可选） — 映射函数
+
+类似 `Array.prototype.map`，可以对生成的数组元素做处理：
+
+```js
+const numbers = [1, 2, 3];
+const doubled = Array.from(numbers, (x) => x * 2); // [2, 4, 6]
+```
+
+---
+
+### 结合箭头函数的用法
+
+```js
+const result = Array.from({ length: 5 }, (_, i) => i + 1); // [1, 2, 3, 4, 5]
+```
+
+这个例子创建一个长度为 5 的数组，值是 1 到 5。
+
+---
+
+如果你需要针对具体场景我可以帮你写个示例，或者解释更细的细节！

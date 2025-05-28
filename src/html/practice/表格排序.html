@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table id="dataTable" border="1">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>Price</th>
+          <th>Sales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Item_01</td>
+          <td>100</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Item_02</td>
+          <td>200</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>Item_03</td>
+          <td>150</td>
+          <td>70</td>
+        </tr>
+        <tr>
+          <td>Item_04</td>
+          <td>120</td>
+          <td>90</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button onclick="sortTable('price', 'asc')">Price升序</button>
+    <button onclick="sortTable('price', 'desc')">Price降序</button>
+    <button onclick="sortTable('sales', 'asc')">Sales升序</button>
+    <button onclick="sortTable('sales', 'desc')">Sales降序</button>
+  </body>
+  <script>
+    function sortTable(type, order) {
+      const table = document.getElementById("dataTable");
+      console.log("table", table);
+      console.dir(table); // 查看 table 的所有属性和方法
+      const tbody = table.tBodies[0];
+      const tHead = table.tHead;
+      console.log("tHead", tHead);
+      console.dir(tHead); // 查看 tHead 的所有属性和方法
+      console.log("tbody", tbody);
+      console.dir(tbody); // 查看 tbody 的所有属性和方法
+      const rows = Array.from(tbody.rows);
+      console.log("rows", rows);
+
+      // 根据type确定排序列，price是第0列，sales是第1列
+      const colIndex = type === "price" ? 1 : 2;
+
+      rows.sort((a, b) => {
+        const valA = parseFloat(a.cells[colIndex].innerText);
+        const valB = parseFloat(b.cells[colIndex].innerText);
+
+        if (order === "asc") {
+          return valA - valB;
+        } else {
+          return valB - valA;
+        }
+      });
+
+      // 重新插入排序后的行
+      rows.forEach((row) => tbody.appendChild(row));
+    }
+  </script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="text">原始内容</p>
+    <button onclick="change()">修改元素</button>
+  </body>
+  <script>
+    function change() {
+      //获取元素
+      const p = document.getElementById("text");
+
+      //修改
+      p.textContent = "修改后的内容";
+    }
+  </script>
+</html>

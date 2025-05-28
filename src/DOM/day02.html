@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="username" placeholder="输入名字" />
+    <button onclick="showName()">确定</button>
+    <p id="greeting"></p>
+  </body>
+  <script>
+    function showName() {
+      //获取输入框的值
+      const nameD = document.getElementById("username");
+      //   console.log("name", name);
+      console.dir(name); // 查看元素的所有属性和方法
+      const name = nameD.value;
+
+      const pD = document.getElementById("greeting");
+
+      pD.textContent = `你好，${name}！`;
+
+      pD.innerHTML = `你好，<strong>${name}</strong>！`; // 使用innerHTML可以添加HTML标签
+
+      pD.con;
+    }
+  </script>
+</html>
