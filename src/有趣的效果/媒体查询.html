@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式页面示例</title>
+    <style>
+      :root {
+        font-size: 16px;
+      }
+
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2.5rem; /* 基于根字体大小的相对单位 */
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+      }
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .profile img {
+        width: 20vw;
+        max-width: 150px;
+        border-radius: 50%;
+      }
+
+      .profile-info {
+        flex: 1;
+      }
+
+      /* ✅ 媒体查询：屏幕宽度小于等于768px时 */
+      @media screen and (max-width: 768px) {
+        .container {
+          width: 90%;
+          padding: 1rem;
+        }
+
+        .profile {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .profile img {
+          width: 40vw;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>我的响应式个人简介</h1>
+    </header>
+
+    <div class="container">
+      <div class="profile">
+        <img src="../../images/image1.jpg" alt="头像" />
+        <div class="profile-info">
+          <h2>你好，我是小明</h2>
+          <p>
+            我是一名前端开发者，喜欢用 HTML、CSS 和 JavaScript 构建漂亮的网页。
+            这个页面会根据你的屏幕大小自动适配，试着缩放浏览器看看效果吧！
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
