@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Modal</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .modal {
+        display: none;
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal-dialog {
+        margin-left: auto;
+        margin-right: auto;
+        background: white;
+        width: 50%;
+        height: auto;
+        top: -50%;
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        transition: top 0.3s ease;
+      }
+      .modal-dialog-header,
+      .modal-dialog-content,
+      .modal-dialog-footer {
+        margin-bottom: 20px;
+        border-bottom: 2px solid black;
+      }
+      .modal-dialog-header {
+        font: 30px bold;
+      }
+
+      .modal-dialog-footer {
+        text-align: right;
+        padding: 15px;
+        margin: 10px;
+
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: auto;
+      }
+      buttton {
+        background: #333;
+        color: white;
+        border-radius: 8px;
+      }
+      .main {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+        similique vel! Ipsam architecto porro excepturi, maxime perspiciatis
+        dignissimos nemo adipisci. Facere maxime necessitatibus aut vitae rem
+        consectetur eos blanditiis nam?
+        <br />
+        <button data-modal-target="#myModal">打开模态框</button>
+      </div>
+
+      <div id="myModal" class="modal">
+        <div class="modal-dialog">
+          <div class="modal-dialog-header">Modal Title</div>
+          <div class="modal-dialog-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
+            fugit, animi perspiciatis, vel explicabo ratione alias facere
+            laudantium deserunt officiis, ipsa repudiandae. Eligendi tenetur
+            porro quibusdam, inventore non sed! Nobis!
+          </div>
+          <div class="modal-dialog-footer">
+            <button data-modal-dismiss>Save</button>
+            <button data-modal-dismiss>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 绑定打开模态框事件
+      document.querySelectorAll("[data-modal-target]").forEach((button) => {
+        button.addEventListener("click", function () {
+          const targetSelector = this.getAttribute("data-modal-target");
+          const modal = document.querySelector(targetSelector);
+          const dialog = modal.querySelector(".modal-dialog");
+
+          modal.style.display = "block";
+          setTimeout(() => {
+            dialog.style.top = "30px";
+          }, 10);
+        });
+      });
+
+      // 绑定点击背景关闭模态框事件
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", function () {
+          const dialog = modal.querySelector(".modal-dialog");
+          dialog.style.top = "-50%";
+          setTimeout(() => {
+            modal.style.display = "none";
+          }, 300);
+        });
+      });
+
+      // 阻止模态框内容点击冒泡关闭
+      document.querySelectorAll(".modal-dialog").forEach((dialog) => {
+        dialog.addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+      });
+
+      // 绑定关闭按钮事件
+      document.querySelectorAll("[data-modal-dismiss]").forEach((button) => {
+        button.addEventListener("click", function () {
+          const modal = this.closest(".modal");
+          const dialog = modal.querySelector(".modal-dialog");
+          dialog.style.top = "-50%";
+          setTimeout(() => {
+            modal.style.display = "none";
+          }, 300);
+        });
+      });
+    });
+  </script>
+</html>
