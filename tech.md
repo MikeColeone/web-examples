@@ -45,3 +45,17 @@ CDN 是一组分布在世界各地的 **服务器网络** ，它的作用是把�
 ```
 
 如果不用 CDN，你就得把这份 CSS 文件下载到你自己的服务器上，别人访问你网站时都要从你的服务器下载。而用了 CDN，别人就能从最近的节点访问，速度快，还不占你服务器带宽。
+
+## 计时函数
+
+```js
+function benchmark(fn, name) {
+  const start = performance.now();
+  for (let i = 0; i < runs; i++) {
+    fn();
+  }
+  const end = performance.now();
+  const avg = (end - start) / runs;
+  console.log(`${name} 平均耗时: ${avg.toFixed(6)} 毫秒`);
+}
+```

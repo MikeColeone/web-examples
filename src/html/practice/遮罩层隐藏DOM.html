@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .target {
+      position: relative;
+      width: 300px;
+      height: 150px;
+      background: orange;
+      z-index: 1;
+    }
+
+    .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 150px;
+      background: white;
+      z-index: 2;
+    }
+  </style>
+  <body>
+    <div class="target">
+      <p>这个元素需要被隐藏，但不能删</p>
+    </div>
+
+    <div class="mask"></div>
+  </body>
+  <script>
+    function coverElement(el) {
+      const rect = el.getBoundingClientRect();
+
+      const mask = document.createElement("div");
+      Object.assign(mask.style, {
+        position: "fixed",
+        top: rect.top + "px",
+        left: rect.left + "px",
+        width: rect.width + "px",
+        height: rect.height + "px",
+        background: "#fff",
+        zIndex: 9999,
+        pointerEvents: "none", // 不挡住用户交互（可选）
+      });
+
+      document.body.appendChild(mask);
+    }
+
+    const target = document.querySelector(".target");
+    coverElement(target);
+  </script>
+</html>
