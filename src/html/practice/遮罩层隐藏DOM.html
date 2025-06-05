@@ -36,6 +36,8 @@
       const rect = el.getBoundingClientRect();
 
       const mask = document.createElement("div");
+      console.log("mask", mask.style);
+      mask.id = "mask-layer"; // 设置遮罩的ID，方便后续移除
       Object.assign(mask.style, {
         position: "fixed",
         top: rect.top + "px",
@@ -50,6 +52,14 @@
       document.body.appendChild(mask);
     }
 
+    //移除遮罩
+    // 移除遮罩
+    function hideMask() {
+      const mask = document.getElementById("mask-layer");
+      if (mask) {
+        mask.remove();
+      }
+    }
     const target = document.querySelector(".target");
     coverElement(target);
   </script>
