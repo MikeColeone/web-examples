@@ -5,12 +5,15 @@ const { performance } = require("perf_hooks");
 const list = Array.from({ length: 10001 }, (_, i) => i);
 // const list = new Array(10001).fill(0).map((_, i) => i);
 const listDelete = [5000, 2000, 10000];
+//有序的话才能直接调用splice
 const runs = 10000;
 
 // 方法1：filter + includes
 function methodFilter() {
   return list.filter((_, index) => !listDelete.includes(index));
 }
+
+// 不排序的splice方法
 
 // 方法2：splice（倒序）
 function methodSplice() {

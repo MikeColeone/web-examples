@@ -1,0 +1,82 @@
+:root {
+  --transitionTime: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+} */
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  gap: 2px;
+}
+
+.droppable {
+  flex: 1;
+  padding: 0 1rem;
+  background: linear-gradient(45deg, #ff4137, #eaad32);
+  border-radius: 0.5rem;
+  overflow: auto;
+}
+
+.draggable {
+  margin: 1rem 0;
+  line-height: 150%;
+  overflow: hidden;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  color: #e9550c;
+  background-color: rgba(240, 240, 240, 0.7);
+  transition: var(--transitionTime);
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+.new-added {
+  animation: insert var(--transitionTime) linear;
+}
+
+.will-remove {
+  animation: remove var(--transitionTime) linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes insert {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 100vh;
+  }
+}
+
+@keyframes remove {
+  from {
+    max-height: 100vh;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
