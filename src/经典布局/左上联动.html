@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>左侧导航联动顶部展示</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body,
+      html {
+        height: 100%;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      /* 左侧导航栏 */
+      .sidebar {
+        width: 200px;
+        background-color: #2c3e50;
+        color: white;
+        padding-top: 20px;
+      }
+
+      .sidebar button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        background: none;
+        color: white;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .sidebar button:hover,
+      .sidebar button.active {
+        background-color: #34495e;
+      }
+
+      /* 主内容区域 */
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        height: 60px;
+        background-color: #ecf0f1;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        font-size: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .content {
+        padding: 20px;
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- 左侧导航 -->
+      <div class="sidebar">
+        <button data-content="首页内容">首页</button>
+        <button data-content="关于我们内容">关于我们</button>
+        <button data-content="服务内容">服务</button>
+        <button data-content="联系内容">联系我们</button>
+      </div>
+
+      <!-- 右侧主区域 -->
+      <div class="main">
+        <div class="topbar" id="topbar">请选择左侧导航</div>
+        <div class="content" id="content">内容区</div>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll(".sidebar button");
+      const topbar = document.getElementById("topbar");
+      const content = document.getElementById("content");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // 移除其他按钮的 active 样式
+          buttons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          const title = button.textContent;
+          const data = button.getAttribute("data-content");
+
+          topbar.textContent = title;
+          content.textContent = data;
+        });
+      });
+    </script>
+  </body>
+</html>
