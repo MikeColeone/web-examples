@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Components & Selectors</title>
+    <style>
+      /* 卡片组件样式 */
+      .card {
+        width: 300px;
+        height: 200px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+      .card:hover {
+        background-color: #f5f5f5;
+      }
+
+      /* CSS 选择器 */
+      /*first-chirld*/
+      div p:first-of-type {
+        color: #3498db;
+      }
+      .highlight + span {
+        font-weight: bold;
+      }
+      table tr:nth-child(odd) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 卡片组件示例 -->
+    <div class="card">
+      <h3>卡片标题</h3>
+      <p>这是卡片的第一个段落。</p>
+      <p>这是卡片的第二个段落。</p>
+    </div>
+
+    <!-- 选择器示例 -->
+    <div>
+      <p>第一个段落</p>
+      <p>第二个段落</p>
+    </div>
+
+    <span>普通文本</span>
+    <span class="highlight">高亮文本</span>
+    <span>该文本会变粗</span>
+
+    <table border="1">
+      <tr>
+        <td>表头1</td>
+        <td>表头2</td>
+      </tr>
+      <tr>
+        <td>数据1</td>
+        <td>数据2</td>
+      </tr>
+      <tr>
+        <td>数据3</td>
+        <td>数据4</td>
+      </tr>
+    </table>
+  </body>
+</html>
