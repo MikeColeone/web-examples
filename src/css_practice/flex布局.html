@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      cantainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      .login {
+        width: 300px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      创建一个居中显示的登录框： 页面大小任意，登录框始终垂直、水平居中
+      登录框尺寸：300px * 200px，有边框和内边距 登录框内部包含： 一个标题
+      一个输入框 一个提交按钮
+    </div>
+    <cantainer>
+      <div class="login">
+        <form action="">
+          <label for="login">
+            <input type="text" placeholder="登录" />
+          </label>
+        </form>
+      </div>
+    </cantainer>
+  </body>
+</html>
