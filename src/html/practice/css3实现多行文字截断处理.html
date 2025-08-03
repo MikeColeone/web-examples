@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title></title>
+    <style>
+        .text-overflow ( @class ){
+            .@{class} {
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .multi-text-overflow ( @class, @line ){
+            .@{class} {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                display: box;
+                -webkit-line-clamp: @line;
+                -webkit-box-orient: vertical;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    文字截断效果
+    <p>单行文字截断效果</p>
+    <text class="text-overflow"></text>
+    <p>多行文字阶段效果</p>
+    <text class="multi-text-overflow"></text>
+    <div></div>
+</div>
+</body>
+</html>
+

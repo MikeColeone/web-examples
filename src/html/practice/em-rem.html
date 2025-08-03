@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .rem-example{
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<text class="rem-example" id="text-rem">lorem
+</text>
+</body>
+<script>
+    const dom = document.querySelector("text");
+    console.log(dom)
+    const element = document.getElementById("text-rem");
+    console.log(element)
+    const fontSize = window.getComputedStyle(element).fontSize;
+    console.log(fontSize)
+</script>
+</html>
