@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="sortTable('age','asc')">按年龄升序排序</button>
+    <button onclick="sortTable('age', 'desc')">按年龄降序排序</button>
+
+    <table>
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>18</td>
+        <td>男</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>19</td>
+        <td>女</td>
+      </tr>
+      <tr>
+        <td>王五</td>
+        <td>20</td>
+        <td>男</td>
+      </tr>
+    </table>
+  </body>
+
+  <script>
+    function sortTable(column, order) {
+      const table = document.querySelector("table");
+      const rows = table.rows;
+      const data = [];
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.cells;
+        const name = cells[0].textContent;
+        const age = parseInt(cells[1].textContent);
+        const gender = cells[2].textContent;
+        data.push({ name, age, gender });
+      }
+      data.sort((a, b) => {
+        if (column === "age") {
+          return order === "asc" ? a.age - b.age : b.age - a.age;
+        } else {
+          return order === "asc"
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name);
+        }
+      });
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.cells;
+        cells[0].textContent = data[i - 1].name;
+        cells[1].textContent = data[i - 1].age;
+        cells[2].textContent = data[i - 1].gender;
+      }
+      console.log(data);
+      // 排序完成后，将数据写回表格
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.cells;
+        cells[0].textContent = data[i - 1].name;
+        cells[1].textContent = data[i - 1].age;
+        cells[2].textContent = data[i - 1].gender;
+      }
+    }
+  </script>
+</html>
